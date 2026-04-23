@@ -1,406 +1,159 @@
-
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodLogistic | Transport Alimentari Professional</title>
-    <!-- Tipografia Professional -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta de colors corporativa */
-            --primary-color: #0f4c81; /* Blau clàssic professional */
-            --secondary-color: #2a9d8f; /* Verd logística (frescor) */
+            --primary-color: #0f4c81;
+            --secondary-color: #2a9d8f;
             --dark-color: #1d2d35;
             --light-color: #f8f9fa;
             --text-color: #333;
             --border-radius: 8px;
             --transition: all 0.3s ease;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-color); background-color: #fff; scroll-behavior: smooth; }
 
+        header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark-color); font-weight: 600; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary-color); }
 
-        /* Reset i Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 10px; }
+        .section-title .underline { width: 60px; height: 4px; background: var(--secondary-color); margin: 0 auto; }
+
+        #inici { height: 90vh; background: linear-gradient(rgba(15,76,129,0.8), rgba(15,76,129,0.6)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: white; max-width: 100%; margin-top: 60px; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-block; padding: 12px 30px; background: var(--secondary-color); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 600; transition: var(--transition); }
+        .btn:hover { background: #238b7f; transform: translateY(-2px); }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: var(--light-color); padding: 40px; border-radius: var(--border-radius); text-align: center; transition: var(--transition); border-bottom: 4px solid transparent; }
+        .service-card:hover { transform: translateY(-10px); border-bottom: 4px solid var(--primary-color); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .service-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; display: block; }
+
+        .about-content { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image { flex: 1; min-width: 300px; }
+        .about-image img { width: 100%; border-radius: var(--border-radius); box-shadow: 20px 20px 0 var(--light-color); }
+
+        .contact-layout { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 20px; }
+        .company-details { flex: 1; min-width: 320px; background: #fff; padding: 40px; border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-color); }
+        .company-details h3 { color: var(--primary-color); margin-bottom: 25px; font-size: 1.5rem; }
+        .detail-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+        .detail-item:last-child { border-bottom: none; }
+        .detail-label { font-weight: 700; color: var(--dark-color); display: block; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 2px; }
+        .detail-value { color: var(--text-color); font-size: 1rem; }
+        .contact-container { flex: 1.5; min-width: 320px; background: var(--light-color); padding: 40px; border-radius: var(--border-radius); }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--border-radius); font-family: inherit; transition: border-color 0.2s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); }
+        .form-group textarea { height: 150px; resize: vertical; }
+        .submit-btn { width: 100%; padding: 15px; background: var(--primary-color); color: white; border: none; border-radius: var(--border-radius); font-size: 1rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .submit-btn:hover { background: #0a365c; }
+
+        /* ── Checkboxes consentiment ── */
+        .form-consents { margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .consent-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+        .consent-item input[type="checkbox"] {
+            appearance: none; -webkit-appearance: none;
+            width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;
+            border: 2px solid #bbb; border-radius: 4px;
+            background: #fff; cursor: pointer; transition: all 0.2s; position: relative;
         }
+        .consent-item input[type="checkbox"]:checked { background: var(--secondary-color); border-color: var(--secondary-color); }
+        .consent-item input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 3px; top: 1px; width: 8px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg); }
+        .consent-item input[type="checkbox"]:focus { outline: 2px solid rgba(42,157,143,0.4); outline-offset: 2px; }
+        .consent-label { font-size: 0.85rem; color: #555; line-height: 1.5; }
+        .consent-label a { color: var(--secondary-color); text-decoration: none; font-weight: 600; }
+        .consent-label a:hover { text-decoration: underline; }
+        .required-star { color: #e63946; margin-left: 2px; }
+        .consent-error { color: #e63946; font-size: 0.78rem; display: block; margin-top: 4px; margin-left: 28px; }
 
+        footer { background: var(--dark-color); color: white; padding: 50px 20px; text-align: center; }
+        .footer-logo { font-size: 1.5rem; margin-bottom: 20px; display: block; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .copyright { font-size: 0.9rem; opacity: 0.7; margin-top: 20px; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #fff;
-            scroll-behavior: smooth;
-        }
+        /* ── Links legals footer ── */
+        .footer-legal { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+        .footer-legal a { color: rgba(255,255,255,0.55); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+        .footer-legal a:hover { color: var(--secondary-color); }
 
-
-        /* Navegació */
-        header {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        /* ── Banner de cookies ── */
+        #cookie-banner {
             position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-
-        nav {
+            bottom: 0; left: 0; right: 0;
+            z-index: 9999;
+            background: rgba(29, 45, 53, 0.98);
+            border-top: 3px solid var(--secondary-color);
+            padding: 1.25rem 2rem;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-        }
-
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-
-        .nav-links li {
-            margin-left: 2rem;
-        }
-
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-
-        /* Seccions Generals */
-        section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-
-        .section-title .underline {
-            width: 60px;
-            height: 4px;
-            background: var(--secondary-color);
-            margin: 0 auto;
-        }
-
-
-        /* Hero / Inici */
-        #inici {
-            height: 90vh;
-            background: linear-gradient(rgba(15, 76, 129, 0.8), rgba(15, 76, 129, 0.6)),
-                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            max-width: 100%;
-            margin-top: 60px;
-        }
-
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--secondary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-
-        .btn:hover {
-            background: #238b7f;
-            transform: translateY(-2px);
-        }
-
-
-        /* Serveis */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-
-        .service-card {
-            background: var(--light-color);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            text-align: center;
-            transition: var(--transition);
-            border-bottom: 4px solid transparent;
-        }
-
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-bottom: 4px solid var(--primary-color);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-
-
-        .service-card i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-
-        /* Sobre nosaltres */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
+            gap: 1.5rem;
             flex-wrap: wrap;
+            transform: translateY(100%);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
         }
+        #cookie-banner.visible { transform: translateY(0); }
+        #cookie-banner.hiding { transform: translateY(100%); }
+        .cookie-text { flex: 1; min-width: 260px; }
+        .cookie-text p { color: rgba(255,255,255,0.8); font-size: 0.875rem; line-height: 1.6; margin: 0; }
+        .cookie-text p strong { color: #fff; }
+        .cookie-text a { color: var(--secondary-color); text-decoration: none; }
+        .cookie-text a:hover { text-decoration: underline; }
+        .cookie-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; flex-shrink: 0; }
+        .cookie-btn { padding: 0.55rem 1.2rem; border-radius: var(--border-radius); font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: var(--transition); border: none; font-family: inherit; white-space: nowrap; }
+        .cookie-btn--accept { background: var(--secondary-color); color: #fff; }
+        .cookie-btn--accept:hover { background: #238b7f; }
+        .cookie-btn--reject { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
+        .cookie-btn--reject:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+        .cookie-btn--settings { background: transparent; color: var(--secondary-color); border: 1px solid rgba(42,157,143,0.4); }
+        .cookie-btn--settings:hover { background: rgba(42,157,143,0.1); }
 
+        .form-feedback { display: none; padding: 15px; margin-bottom: 20px; border-radius: var(--border-radius); text-align: center; }
+        .form-feedback.success { display: block; background: #d4edda; color: #155724; }
 
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-        }
-
-
-        .about-image img {
-            width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: 20px 20px 0 var(--light-color);
-        }
-
-
-        /* --- Secció Contacte amb Dades de l'Empresa --- */
-        .contact-layout {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-
-        .company-details {
-            flex: 1;
-            min-width: 320px;
-            background: #fff;
-            padding: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-color);
-        }
-
-
-        .company-details h3 {
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-        }
-
-
-        .detail-item {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-
-        .detail-item:last-child {
-            border-bottom: none;
-        }
-
-
-        .detail-label {
-            font-weight: 700;
-            color: var(--dark-color);
-            display: block;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
-
-
-        .detail-value {
-            color: var(--text-color);
-            font-size: 1rem;
-        }
-
-
-        .contact-container {
-            flex: 1.5;
-            min-width: 320px;
-            background: var(--light-color);
-            padding: 40px;
-            border-radius: var(--border-radius);
-        }
-
-
-        /* --- Elements Formulari --- */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-family: inherit;
-        }
-
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-
-        .submit-btn:hover {
-            background: #0a365c;
-        }
-
-
-        /* Footer */
-        footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-
-        .footer-logo {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-top: 20px;
-        }
-
-
-        /* Responsive Mobile */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            .about-content {
-                flex-direction: column-reverse;
-            }
-            .contact-layout {
-                flex-direction: column;
-            }
-        }
-       
-        /* Missatge d'èxit del formulari */
-        .form-feedback {
-            display: none;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: var(--border-radius);
-            text-align: center;
-        }
-        .form-feedback.success {
-            display: block;
-            background: #d4edda;
-            color: #155724;
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-content { flex-direction: column-reverse; }
+            .contact-layout { flex-direction: column; }
+            #cookie-banner { padding: 1rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ══════════ BANNER DE COOKIES ══════════ -->
+    <div id="cookie-banner" role="dialog" aria-label="Avís de cookies">
+        <div class="cookie-text">
+            <p>
+                🍪 <strong>Utilitzem cookies</strong> per millorar la teva experiència. Les cookies tècniques són necessàries per al funcionament del lloc. Les analítiques ens ajuden a millorar els nostres serveis.
+                Consulta la nostra <a href="politica-cookies.html">Política de Cookies</a> i la <a href="politica-privacitat.html">Política de Privacitat</a>.
+            </p>
+        </div>
+        <div class="cookie-actions">
+            <button class="cookie-btn cookie-btn--reject" onclick="cookieChoice('reject')">Rebutjar opcionals</button>
+            <a href="politica-cookies.html" class="cookie-btn cookie-btn--settings">Configurar</a>
+            <button class="cookie-btn cookie-btn--accept" onclick="cookieChoice('accept')">Acceptar totes</button>
+        </div>
+    </div>
 
     <!-- Navegació -->
     <header>
@@ -415,7 +168,6 @@
         </nav>
     </header>
 
-
     <main>
         <!-- Inici -->
         <section id="inici">
@@ -425,7 +177,6 @@
                 <a href="#contacte" class="btn">Sol·licitar Pressupost</a>
             </div>
         </section>
-
 
         <!-- Serveis -->
         <section id="serveis">
@@ -452,7 +203,6 @@
             </div>
         </section>
 
-
         <!-- Sobre nosaltres -->
         <section id="sobre-nosaltres">
             <div class="section-title">
@@ -471,7 +221,6 @@
             </div>
         </section>
 
-
         <!-- Contacte -->
         <section id="contacte">
             <div class="section-title">
@@ -480,60 +229,48 @@
                 <p>Estàs buscant un partner logístic fiable? Parlem-ne.</p>
             </div>
 
-
             <div class="contact-layout">
                 <!-- Columna Esquerra: Dades de l'empresa -->
                 <div class="company-details">
                     <h3>Dades Corporatives</h3>
-                   
                     <div class="detail-item">
                         <span class="detail-label">Raó social</span>
                         <span class="detail-value">FoodLogistic S.A.</span>
                     </div>
-                   
                     <div class="detail-item">
                         <span class="detail-label">NIF</span>
                         <span class="detail-value">A08123456</span>
                     </div>
-                   
                     <div class="detail-item">
                         <span class="detail-label">Adreça</span>
                         <span class="detail-value">Carrer de la Teixidora, núm. 13, 08302 Mataró Barcelona.</span>
                     </div>
-                   
                     <div class="detail-item">
                         <span class="detail-label">Inscripció Registral</span>
                         <span class="detail-value">Inscrita al Registre Mercantil de Barcelona, Tom 45678, Foli 120, Full B-567890, Inscripció 1a.</span>
                     </div>
-                   
                     <div class="detail-item">
                         <span class="detail-label">Correu electrònic de contacte</span>
                         <span class="detail-value">info@foodlogistic.com</span>
                     </div>
-                   
                     <div class="detail-item">
                         <span class="detail-label">Telèfon</span>
                         <span class="detail-value">+34 935 55 55 55</span>
                     </div>
-
-
                     <div class="detail-item">
                         <span class="detail-label">Nombre de treballadors</span>
                         <span class="detail-value">35</span>
                     </div>
-
-
                     <div class="detail-item">
                         <span class="detail-label">Facturació darrer any</span>
-                        <span class="detail-value">25 milions d’euros.</span>
+                        <span class="detail-value">25 milions d'euros.</span>
                     </div>
                 </div>
 
-
-                <!-- Columna Dreta: Formulari existent -->
+                <!-- Columna Dreta: Formulari -->
                 <div class="contact-container">
                     <div id="feedback" class="form-feedback"></div>
-                    <form id="contactForm">
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
                             <label for="nom">Nom</label>
                             <input type="text" id="nom" name="nom" placeholder="Escriu el teu nom complet" required>
@@ -550,6 +287,25 @@
                             <label for="missatge">Missatge</label>
                             <textarea id="missatge" name="missatge" placeholder="Com et podem ajudar?" required></textarea>
                         </div>
+
+                        <!-- ══ CONSENTIMENTS ══ -->
+                        <div class="form-consents">
+                            <!-- Checkbox 1: dades personals (obligatori) -->
+                            <label class="consent-item">
+                                <input type="checkbox" id="consent-data" name="consent_data" required>
+                                <span class="consent-label">
+                                    He llegit i accepto la <a href="politica-privacitat.html" target="_blank">Política de Privacitat</a> i autoritzo el tractament de les meves dades personals per gestionar la meva consulta.<span class="required-star">*</span>
+                                </span>
+                            </label>
+                            <!-- Checkbox 2: comunicacions comercials (opcional) -->
+                            <label class="consent-item">
+                                <input type="checkbox" id="consent-marketing" name="consent_marketing">
+                                <span class="consent-label">
+                                    Accepto rebre comunicacions comercials, novetats i ofertes de FoodLogistic S.A. Pots revocar aquest consentiment en qualsevol moment. Consulta l'<a href="avis-legal.html" target="_blank">Avís Legal</a>.
+                                </span>
+                            </label>
+                        </div>
+
                         <button type="submit" class="submit-btn">Enviar Sol·licitud</button>
                     </form>
                 </div>
@@ -557,71 +313,96 @@
         </section>
     </main>
 
-
     <footer>
         <span class="footer-logo">FoodLogistic</span>
         <p>Expertise en transport alimentari des de 2004.</p>
+        <!-- ══ LINKS LEGALS ══ -->
+        <div class="footer-legal">
+            <a href="avis-legal.html">Avís Legal</a>
+            <a href="politica-privacitat.html">Política de Privacitat</a>
+            <a href="politica-cookies.html">Política de Cookies</a>
+        </div>
         <div class="copyright">
-            &copy; 2024 FoodLogistic S.A. Tots els drets reservats.
+            &copy; 2026 FoodLogistic S.A. Tots els drets reservats.
         </div>
     </footer>
 
-
     <script>
+        // ══════════════════════════════════════
+        // BANNER DE COOKIES
+        // ══════════════════════════════════════
+        (function() {
+            const banner = document.getElementById('cookie-banner');
+            if (!localStorage.getItem('fl_cookie_consent')) {
+                setTimeout(() => banner.classList.add('visible'), 800);
+            }
+            window.cookieChoice = function(choice) {
+                localStorage.setItem('fl_cookie_consent', JSON.stringify({ choice, ts: Date.now() }));
+                banner.classList.add('hiding');
+                setTimeout(() => banner.style.display = 'none', 500);
+            };
+        })();
+
         document.addEventListener('DOMContentLoaded', () => {
             const contactForm = document.getElementById('contactForm');
             const feedback = document.getElementById('feedback');
 
-
-            // 1. Gestió del Formulari de Contacte
+            // ══ FORMULARI ══
             if (contactForm) {
                 contactForm.addEventListener('submit', (e) => {
                     e.preventDefault();
+
+                    // Validació checkbox obligatori
+                    const consentData = document.getElementById('consent-data');
+                    if (!consentData.checked) {
+                        consentData.style.borderColor = '#e63946';
+                        // Missatge d'error
+                        const existing = contactForm.querySelector('.consent-error');
+                        if (!existing) {
+                            const err = document.createElement('span');
+                            err.className = 'consent-error';
+                            err.textContent = 'Has d\'acceptar la política de privacitat per continuar.';
+                            consentData.closest('.consent-item').after(err);
+                        }
+                        consentData.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        return;
+                    }
+
                     const formData = new FormData(contactForm);
                     const data = Object.fromEntries(formData.entries());
-                   
                     console.log('Dades enviades:', data);
-
 
                     feedback.textContent = `Gràcies, ${data.nom}. El teu missatge ha estat enviat correctament. Ens posarem en contacte amb tu aviat.`;
                     feedback.classList.add('success');
-                   
                     contactForm.reset();
 
+                    setTimeout(() => feedback.classList.remove('success'), 5000);
+                });
 
-                    setTimeout(() => {
-                        feedback.classList.remove('success');
-                    }, 5000);
+                // Neteja error en canviar el checkbox
+                document.getElementById('consent-data').addEventListener('change', function() {
+                    this.style.borderColor = '';
+                    const err = contactForm.querySelector('.consent-error');
+                    if (err) err.remove();
                 });
             }
 
-
-            // 2. Efecte header scroll
+            // Efecte header scroll
             window.addEventListener('scroll', () => {
                 const header = document.querySelector('header');
-                if (window.scrollY > 50) {
-                    header.style.padding = '5px 0';
-                } else {
-                    header.style.padding = '10px 0';
-                }
+                header.style.padding = window.scrollY > 50 ? '5px 0' : '10px 0';
             });
 
-
-            // 3. Smooth scroll
+            // Smooth scroll
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
-                    if(target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
                 });
             });
         });
     </script>
-
 
     <!-- Statcounter code -->
     <script type="text/javascript">
