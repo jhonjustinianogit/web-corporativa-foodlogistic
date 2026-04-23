@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLogistic | Transport Alimentari Professional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta de colors corporativa */
+            --primary-color: #0f4c81; 
+            --secondary-color: #2a9d8f; 
+            --dark-color: #1d2d35;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset i Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        /* Navegació */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* Seccions Generals */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-title .underline {
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 0 auto;
+        }
+
+        /* Hero / Inici */
+        #inici {
+            height: 90vh;
+            background: linear-gradient(rgba(15, 76, 129, 0.8), rgba(15, 76, 129, 0.6)), 
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            max-width: 100%;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin: 0 auto 30px; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .btn:hover { background: #238b7f; transform: translateY(-2px); }
+
+        /* Serveis */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--light-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Contacte */
+        .contact-wrapper {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .company-info {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .info-item strong { color: var(--dark-color); display: inline-block; width: 150px; }
+
+        .contact-container {
+            flex: 1.5;
+            min-width: 300px;
+            background: var(--light-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+        }
+
+        /* --- NOVA SECCIÓ: PROTECCIÓ DE DADES --- */
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .privacy-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border: 1px solid #eee;
+        }
+
+        .privacy-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rights-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rights-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .rights-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-links { margin-bottom: 20px; }
+        .footer-links a { color: #fff; text-decoration: none; margin: 0 10px; font-size: 0.9rem; opacity: 0.8; }
+        .footer-links a:hover { opacity: 1; text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .contact-wrapper { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">FoodLogistic</div>
+            <ul class="nav-links">
+                <li><a href="#inici">Inici</a></li>
+                <li><a href="#serveis">Serveis</a></li>
+                <li><a href="#contacte">Contacte</a></li>
+                <li><a href="#proteccio-dades">Privacitat</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inici">
+            <div class="hero-content">
+                <h1>Logística de Precisió per a la Teva Alimentació</h1>
+                <p>Transport nacional i internacional amb control rigorós de temperatura i seguretat alimentària.</p>
+                <a href="#contacte" class="btn">Sol·licitar Pressupost</a>
+            </div>
+        </section>
+
+        <section id="serveis">
+            <div class="section-title">
+                <h2>Els Nostres Serveis</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="services-grid">
+                <article class="service-card">
+                    <h3>Transport Refrigerat</h3>
+                    <p>Mantenim la cadena de fred intacta des del punt d'origen fins a la destinació final.</p>
+                </article>
+                <article class="service-card">
+                    <h3>Distribució Capil·lar</h3>
+                    <p>Arribem a qualsevol punt de venda amb la màxima puntualitat i eficiència urbana.</p>
+                </article>
+                <article class="service-card">
+                    <h3>Seguretat Alimentària</h3>
+                    <p>Complim estrictament amb totes les normatives sanitàries i certificacions APPCC.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacte">
+            <div class="section-title">
+                <h2>Contacte</h2>
+                <div class="underline"></div>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="company-info">
+                    <h3>Dades de l'Empresa</h3>
+                    <div class="info-item"><strong>Raó social:</strong> FoodLogistic S.A.</div>
+                    <div class="info-item"><strong>NIF:</strong> A08123456</div>
+                    <div class="info-item"><strong>Adreça:</strong> Carrer de la Teixidora, 13, Mataró</div>
+                    <div class="info-item"><strong>Email:</strong> info@foodlogistic.com</div>
+                    <div class="info-item"><strong>Telèfon:</strong> +34 935 55 55 55</div>
+                </div>
+
+                <div class="contact-container">
+                    <form id="contactForm">
+                        <div style="margin-bottom:15px">
+                            <label>Nom</label><br>
+                            <input type="text" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;" required>
+                        </div>
+                        <div style="margin-bottom:15px">
+                            <label>Email</label><br>
+                            <input type="email" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc;" required>
+                        </div>
+                        <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer;">Enviar Missatge</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="proteccio-dades" style="background-color: var(--light-color); max-width: 100%;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div class="section-title">
+                    <h2>Protecció de Dades</h2>
+                    <div class="underline"></div>
+                    <p>Informació detallada sobre el tractament de les seves dades personals.</p>
+                </div>
+
+                <div class="privacy-grid">
+                    <div class="privacy-card">
+                        <h4>⚖️ Bases Legals</h4>
+                        <p>El tractament es basa en el <strong>consentiment de l'interessat</strong> en enviar el formulari i, si s'escau, en l'<strong>execució d'un contracte</strong> o mesures precontractuals de serveis logístics.</p>
+                    </div>
+
+                    <div class="privacy-card">
+                        <h4>👥 Destinataris</h4>
+                        <p>Les dades no se cediran a tercers excepte obligació legal. Podran tenir accés proveïdors de serveis tecnològics (allotjament web) sota estrictes contractes de confidencialitat.</p>
+                    </div>
+
+                    <div class="privacy-card">
+                        <h4>⏱️ Conservació</h4>
+                        <p>Es conservaran durant el temps necessari per a la finalitat del tractament o fins que sol·liciti la seva supressió, i posteriorment durant els terminis legals de prescripció.</p>
+                    </div>
+
+                    <div class="privacy-card" style="grid-column: span 1;">
+                        <h4>🛡️ Drets ARSLOP</h4>
+                        <ul class="rights-list">
+                            <li><strong>Accés:</strong> Saber quines dades tractem.</li>
+                            <li><strong>Rectificació:</strong> Corregir dades inexactes.</li>
+                            <li><strong>Supressió:</strong> Demanar l'eliminació.</li>
+                            <li><strong>Oposició:</strong> Aturar un tractament específic.</li>
+                            <li><strong>Limitació:</strong> Restringir temporalment l'ús.</li>
+                            <li><strong>Portabilitat:</strong> Rebre les dades en format digital.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center; background: #fff; padding: 20px; border-radius: var(--border-radius);">
+                    <p><strong>Com exercir els seus drets?</strong> Pot enviar una comunicació escrita a <strong>info@foodlogistic.com</strong> o a la nostra seu social a Mataró, adjuntant una còpia del seu DNI per a la seva identificació.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span class="footer-logo">FoodLogistic</span>
+        <div class="footer-links">
+            <a href="#">Avís Legal</a>
+            <a href="#">Privacitat</a>
+            <a href="#">Cookies</a>
+        </div>
+        <div class="copyright">
+            &copy; 2024 FoodLogistic S.A. Tots els drets reservats.
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll per als enllaços
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
